@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "dialect": "tsql",
+  "status": "error",
+  "warnings": [],
+  "errors": [
+    {
+      "message": "Expected table name but got <Token token_type: TokenType.WHERE, text: WHERE, line: 1, col: 28, start: 23, end: 27, comments: []>",
+      "span": {
+        "start": 22,
+        "end": 27,
+        "line": 1,
+        "col": 23,
+        "end_line": 1,
+        "end_col": 28
+      }
+    }
+  ],
+  "statements": []
+}

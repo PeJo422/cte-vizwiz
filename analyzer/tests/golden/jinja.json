@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "dialect": "tsql",
+  "status": "error",
+  "warnings": [
+    {
+      "code": "jinja",
+      "message": "Jinja/dbt-templating hittades. MVP:n tolkar bara ren SQL – resultatet är ofullständigt.",
+      "level": "warning",
+      "node": null,
+      "span": {
+        "start": 0,
+        "end": 2,
+        "line": 1,
+        "col": 1,
+        "end_line": 1,
+        "end_col": 3
+      },
+      "statement": 0
+    }
+  ],
+  "errors": [
+    {
+      "message": "Parsningen misslyckades, troligen på grund av Jinja/dbt-templating (ej stött i MVP:n).",
+      "span": {
+        "start": 0,
+        "end": 2,
+        "line": 1,
+        "col": 1,
+        "end_line": 1,
+        "end_col": 3
+      }
+    },
+    {
+      "message": "Invalid expression / Unexpected token",
+      "span": {
+        "start": 35,
+        "end": 39,
+        "line": 2,
+        "col": 1,
+        "end_line": 2,
+        "end_col": 5
+      }
+    }
+  ],
+  "statements": []
+}

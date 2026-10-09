@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+# genereras av scripts/fetch-runtime.mjs
+web/public/pyodide/
+web/public/wheels/

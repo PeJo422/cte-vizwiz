@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "dialect": "tsql",
+  "status": "partial",
+  "warnings": [
+    {
+      "code": "inline_subquery",
+      "message": "Inline-underfråga a plattades ut i flödet",
+      "level": "info",
+      "node": "base",
+      "span": null,
+      "statement": 0
+    },
+    {
+      "code": "subquery_in_expression",
+      "message": "Underfråga i uttrycket för 'm' expanderas inte",
+      "level": "warning",
+      "node": "<output>",
+      "span": {
+        "start": 90,
+        "end": 118,
+        "line": 4,
+        "col": 12,
+        "end_line": 4,
+        "end_col": 40
+      },
+      "statement": 0
+    }
+  ],
+  "errors": [],
+  "statements": [
+    {
+      "index": 0,
+      "span": {
+        "start": 0,
+        "end": 128,
+        "line": 1,
+        "col": 1,
+        "end_line": 4,
+        "end_col": 50
+      },
+      "nodes": [
+        {
+          "id": "t",
+          "kind": "source",
+          "span": null,
+          "name_span": null,
+          "body_span": null,
+          "inputs": [],
+          "operations": [],
+          "columns": [
+            {
+              "name": "id",
+              "expression": "id",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            },
+            {
+              "name": "v",
+              "expression": "v",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "unknown"
+          }
+        },
+        {
+          "id": "base",
+          "kind": "cte",
+          "span": {
+            "start": 5,
+            "end": 78,
+            "line": 1,
+            "col": 6,
+            "end_line": 3,
+            "end_col": 2
+          },
+          "name_span": {
+            "start": 5,
+            "end": 9,
+            "line": 1,
+            "col": 6,
+            "end_line": 1,
+            "end_col": 10
+          },
+          "body_span": {
+            "start": 19,
+            "end": 76,
+            "line": 2,
+            "col": 5,
+            "end_line": 2,
+            "end_col": 62
+          },
+          "inputs": [
+            {
+              "node": "t",
+              "alias": "t",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "id, v",
+              "span": null,
+              "details": {
+                "scope": "a"
+              }
+            },
+            {
+              "type": "filter",
+              "expression": "v > 0",
+              "span": null,
+              "details": {
+                "clause": "WHERE",
+                "scope": "a"
+              }
+            },
+            {
+              "type": "select",
+              "expression": "a.id, a.v",
+              "span": {
+                "start": 19,
+                "end": 35,
+                "line": 2,
+                "col": 5,
+                "end_line": 2,
+                "end_col": 21
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "id",
+              "expression": "a.id",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "t",
+                  "column": "id"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 26,
+                "end": 30,
+                "line": 2,
+                "col": 12,
+                "end_line": 2,
+                "end_col": 16
+              }
+            },
+            {
+              "name": "v",
+              "expression": "a.v",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "t",
+                  "column": "v"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 32,
+                "end": 35,
+                "line": 2,
+                "col": 18,
+                "end_line": 2,
+                "end_col": 21
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "fewer"
+          }
+        },
+        {
+          "id": "<output>",
+          "kind": "output",
+          "span": {
+            "start": 79,
+            "end": 128,
+            "line": 4,
+            "col": 1,
+            "end_line": 4,
+            "end_col": 50
+          },
+          "name_span": null,
+          "body_span": {
+            "start": 79,
+            "end": 128,
+            "line": 4,
+            "col": 1,
+            "end_line": 4,
+            "end_col": 50
+          },
+          "inputs": [
+            {
+              "node": "base",
+              "alias": "base",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "id, (SELECT MAX(v) FROM t2)",
+              "span": {
+                "start": 79,
+                "end": 118,
+                "line": 4,
+                "col": 1,
+                "end_line": 4,
+                "end_col": 40
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "id",
+              "expression": "id",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "base",
+                  "column": "id"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 86,
+                "end": 88,
+                "line": 4,
+                "col": 8,
+                "end_line": 4,
+                "end_col": 10
+              }
+            },
+            {
+              "name": "m",
+              "expression": "(SELECT MAX(v) FROM t2)",
+              "change": "derived",
+              "sources": [],
+              "via_star": false,
+              "span": {
+                "start": 90,
+                "end": 118,
+                "line": 4,
+                "col": 12,
+                "end_line": 4,
+                "end_col": 40
+              }
+            }
+          ],
+          "columns_added": [
+            "m"
+          ],
+          "columns_removed": [
+            "v"
+          ],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": 0,
+            "rows": "same"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "from": "t",
+          "to": "base",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "base",
+          "to": "<output>",
+          "role": "from",
+          "join_type": null
+        }
+      ],
+      "output_node": "<output>",
+      "order": [
+        "t",
+        "base",
+        "<output>"
+      ]
+    }
+  ]
+}

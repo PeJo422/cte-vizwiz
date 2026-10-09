@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "dialect": "tsql",
+  "status": "ok",
+  "warnings": [],
+  "errors": [],
+  "statements": [
+    {
+      "index": 0,
+      "span": {
+        "start": 0,
+        "end": 70,
+        "line": 1,
+        "col": 1,
+        "end_line": 1,
+        "end_col": 71
+      },
+      "nodes": [
+        {
+          "id": "dbo.orders",
+          "kind": "source",
+          "span": null,
+          "name_span": null,
+          "body_span": null,
+          "inputs": [],
+          "operations": [],
+          "columns": [
+            {
+              "name": "customer_id",
+              "expression": "customer_id",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "unknown"
+          }
+        },
+        {
+          "id": "<output>",
+          "kind": "output",
+          "span": {
+            "start": 0,
+            "end": 70,
+            "line": 1,
+            "col": 1,
+            "end_line": 1,
+            "end_col": 71
+          },
+          "name_span": null,
+          "body_span": {
+            "start": 0,
+            "end": 70,
+            "line": 1,
+            "col": 1,
+            "end_line": 1,
+            "end_col": 71
+          },
+          "inputs": [
+            {
+              "node": "dbo.orders",
+              "alias": "orders",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "customer_id, COUNT(*)",
+              "span": {
+                "start": 0,
+                "end": 33,
+                "line": 1,
+                "col": 1,
+                "end_line": 1,
+                "end_col": 34
+              },
+              "details": {}
+            },
+            {
+              "type": "aggregate",
+              "expression": "GROUP BY customer_id",
+              "span": {
+                "start": 50,
+                "end": 70,
+                "line": 1,
+                "col": 51,
+                "end_line": 1,
+                "end_col": 71
+              },
+              "details": {
+                "group_by": [
+                  "customer_id"
+                ]
+              }
+            }
+          ],
+          "columns": [
+            {
+              "name": "customer_id",
+              "expression": "customer_id",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "dbo.orders",
+                  "column": "customer_id"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 7,
+                "end": 18,
+                "line": 1,
+                "col": 8,
+                "end_line": 1,
+                "end_col": 19
+              }
+            },
+            {
+              "name": "n",
+              "expression": "COUNT(*)",
+              "change": "aggregate",
+              "sources": [],
+              "via_star": false,
+              "span": {
+                "start": 20,
+                "end": 33,
+                "line": 1,
+                "col": 21,
+                "end_line": 1,
+                "end_col": 34
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "collapsed"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "from": "dbo.orders",
+          "to": "<output>",
+          "role": "from",
+          "join_type": null
+        }
+      ],
+      "output_node": "<output>",
+      "order": [
+        "dbo.orders",
+        "<output>"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "dialect": "tsql",
+  "status": "ok",
+  "warnings": [],
+  "errors": [],
+  "statements": [
+    {
+      "index": 0,
+      "span": {
+        "start": 0,
+        "end": 44,
+        "line": 1,
+        "col": 1,
+        "end_line": 1,
+        "end_col": 45
+      },
+      "nodes": [
+        {
+          "id": "t1",
+          "kind": "source",
+          "span": null,
+          "name_span": null,
+          "body_span": null,
+          "inputs": [],
+          "operations": [],
+          "columns": [
+            {
+              "name": "x",
+              "expression": "x",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "unknown"
+          }
+        },
+        {
+          "id": "a",
+          "kind": "cte",
+          "span": {
+            "start": 5,
+            "end": 28,
+            "line": 1,
+            "col": 6,
+            "end_line": 1,
+            "end_col": 29
+          },
+          "name_span": {
+            "start": 5,
+            "end": 6,
+            "line": 1,
+            "col": 6,
+            "end_line": 1,
+            "end_col": 7
+          },
+          "body_span": {
+            "start": 11,
+            "end": 27,
+            "line": 1,
+            "col": 12,
+            "end_line": 1,
+            "end_col": 28
+          },
+          "inputs": [
+            {
+              "node": "t1",
+              "alias": "t1",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "x",
+              "span": {
+                "start": 11,
+                "end": 19,
+                "line": 1,
+                "col": 12,
+                "end_line": 1,
+                "end_col": 20
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "x",
+              "expression": "x",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "t1",
+                  "column": "x"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 18,
+                "end": 19,
+                "line": 1,
+                "col": 19,
+                "end_line": 1,
+                "end_col": 20
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "same"
+          }
+        },
+        {
+          "id": "<output>",
+          "kind": "output",
+          "span": {
+            "start": 29,
+            "end": 44,
+            "line": 1,
+            "col": 30,
+            "end_line": 1,
+            "end_col": 45
+          },
+          "name_span": null,
+          "body_span": {
+            "start": 29,
+            "end": 44,
+            "line": 1,
+            "col": 30,
+            "end_line": 1,
+            "end_col": 45
+          },
+          "inputs": [
+            {
+              "node": "a",
+              "alias": "a",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "x",
+              "span": {
+                "start": 29,
+                "end": 37,
+                "line": 1,
+                "col": 30,
+                "end_line": 1,
+                "end_col": 38
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "x",
+              "expression": "x",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "a",
+                  "column": "x"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 36,
+                "end": 37,
+                "line": 1,
+                "col": 37,
+                "end_line": 1,
+                "end_col": 38
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": 0,
+            "rows": "same"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "from": "t1",
+          "to": "a",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "a",
+          "to": "<output>",
+          "role": "from",
+          "join_type": null
+        }
+      ],
+      "output_node": "<output>",
+      "order": [
+        "t1",
+        "a",
+        "<output>"
+      ]
+    },
+    {
+      "index": 1,
+      "span": {
+        "start": 46,
+        "end": 90,
+        "line": 2,
+        "col": 1,
+        "end_line": 2,
+        "end_col": 45
+      },
+      "nodes": [
+        {
+          "id": "t2",
+          "kind": "source",
+          "span": null,
+          "name_span": null,
+          "body_span": null,
+          "inputs": [],
+          "operations": [],
+          "columns": [
+            {
+              "name": "y",
+              "expression": "y",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "unknown"
+          }
+        },
+        {
+          "id": "b",
+          "kind": "cte",
+          "span": {
+            "start": 51,
+            "end": 74,
+            "line": 2,
+            "col": 6,
+            "end_line": 2,
+            "end_col": 29
+          },
+          "name_span": {
+            "start": 51,
+            "end": 52,
+            "line": 2,
+            "col": 6,
+            "end_line": 2,
+            "end_col": 7
+          },
+          "body_span": {
+            "start": 57,
+            "end": 73,
+            "line": 2,
+            "col": 12,
+            "end_line": 2,
+            "end_col": 28
+          },
+          "inputs": [
+            {
+              "node": "t2",
+              "alias": "t2",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "y",
+              "span": {
+                "start": 57,
+                "end": 65,
+                "line": 2,
+                "col": 12,
+                "end_line": 2,
+                "end_col": 20
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "y",
+              "expression": "y",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "t2",
+                  "column": "y"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 64,
+                "end": 65,
+                "line": 2,
+                "col": 19,
+                "end_line": 2,
+                "end_col": 20
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "same"
+          }
+        },
+        {
+          "id": "<output>",
+          "kind": "output",
+          "span": {
+            "start": 75,
+            "end": 90,
+            "line": 2,
+            "col": 30,
+            "end_line": 2,
+            "end_col": 45
+          },
+          "name_span": null,
+          "body_span": {
+            "start": 75,
+            "end": 90,
+            "line": 2,
+            "col": 30,
+            "end_line": 2,
+            "end_col": 45
+          },
+          "inputs": [
+            {
+              "node": "b",
+              "alias": "b",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "y",
+              "span": {
+                "start": 75,
+                "end": 83,
+                "line": 2,
+                "col": 30,
+                "end_line": 2,
+                "end_col": 38
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "y",
+              "expression": "y",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "b",
+                  "column": "y"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 82,
+                "end": 83,
+                "line": 2,
+                "col": 37,
+                "end_line": 2,
+                "end_col": 38
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": 0,
+            "rows": "same"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "from": "t2",
+          "to": "b",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "b",
+          "to": "<output>",
+          "role": "from",
+          "join_type": null
+        }
+      ],
+      "output_node": "<output>",
+      "order": [
+        "t2",
+        "b",
+        "<output>"
+      ]
+    }
+  ]
+}

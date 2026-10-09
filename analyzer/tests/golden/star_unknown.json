@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "dialect": "tsql",
+  "status": "ok",
+  "warnings": [
+    {
+      "code": "star_unknown",
+      "message": "SELECT * mot 'events' – kolumnerna är okända utan schema",
+      "level": "info",
+      "node": "src",
+      "span": {
+        "start": 20,
+        "end": 21,
+        "line": 1,
+        "col": 21,
+        "end_line": 1,
+        "end_col": 22
+      },
+      "statement": 0
+    }
+  ],
+  "errors": [],
+  "statements": [
+    {
+      "index": 0,
+      "span": {
+        "start": 0,
+        "end": 113,
+        "line": 1,
+        "col": 1,
+        "end_line": 3,
+        "end_col": 20
+      },
+      "nodes": [
+        {
+          "id": "raw.events",
+          "kind": "source",
+          "span": null,
+          "name_span": null,
+          "body_span": null,
+          "inputs": [],
+          "operations": [],
+          "columns": [
+            {
+              "name": "*",
+              "expression": "*",
+              "change": "star_unknown",
+              "sources": [],
+              "via_star": true,
+              "span": null
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "unknown"
+          }
+        },
+        {
+          "id": "src",
+          "kind": "cte",
+          "span": {
+            "start": 5,
+            "end": 38,
+            "line": 1,
+            "col": 6,
+            "end_line": 1,
+            "end_col": 39
+          },
+          "name_span": {
+            "start": 5,
+            "end": 8,
+            "line": 1,
+            "col": 6,
+            "end_line": 1,
+            "end_col": 9
+          },
+          "body_span": {
+            "start": 13,
+            "end": 37,
+            "line": 1,
+            "col": 14,
+            "end_line": 1,
+            "end_col": 38
+          },
+          "inputs": [
+            {
+              "node": "raw.events",
+              "alias": "events",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "events.*",
+              "span": {
+                "start": 13,
+                "end": 21,
+                "line": 1,
+                "col": 14,
+                "end_line": 1,
+                "end_col": 22
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "*",
+              "expression": "events.*",
+              "change": "star_unknown",
+              "sources": [
+                {
+                  "node": "raw.events",
+                  "column": "*"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 20,
+                "end": 21,
+                "line": 1,
+                "col": 21,
+                "end_line": 1,
+                "end_col": 22
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "same"
+          }
+        },
+        {
+          "id": "typed",
+          "kind": "cte",
+          "span": {
+            "start": 40,
+            "end": 93,
+            "line": 2,
+            "col": 1,
+            "end_line": 2,
+            "end_col": 54
+          },
+          "name_span": {
+            "start": 40,
+            "end": 45,
+            "line": 2,
+            "col": 1,
+            "end_line": 2,
+            "end_col": 6
+          },
+          "body_span": {
+            "start": 50,
+            "end": 92,
+            "line": 2,
+            "col": 11,
+            "end_line": 2,
+            "end_col": 53
+          },
+          "inputs": [
+            {
+              "node": "src",
+              "alias": "src",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "src.*, CAST(ts AS DATE)",
+              "span": {
+                "start": 50,
+                "end": 83,
+                "line": 2,
+                "col": 11,
+                "end_line": 2,
+                "end_col": 44
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "*",
+              "expression": "src.*",
+              "change": "star_unknown",
+              "sources": [
+                {
+                  "node": "src",
+                  "column": "*"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 57,
+                "end": 58,
+                "line": 2,
+                "col": 18,
+                "end_line": 2,
+                "end_col": 19
+              }
+            },
+            {
+              "name": "day",
+              "expression": "CAST(ts AS DATE)",
+              "change": "derived",
+              "sources": [
+                {
+                  "node": "src",
+                  "column": "ts"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 60,
+                "end": 83,
+                "line": 2,
+                "col": 21,
+                "end_line": 2,
+                "end_col": 44
+              }
+            }
+          ],
+          "columns_added": [
+            "day"
+          ],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": 1,
+            "rows": "same"
+          }
+        },
+        {
+          "id": "<output>",
+          "kind": "output",
+          "span": {
+            "start": 94,
+            "end": 113,
+            "line": 3,
+            "col": 1,
+            "end_line": 3,
+            "end_col": 20
+          },
+          "name_span": null,
+          "body_span": {
+            "start": 94,
+            "end": 113,
+            "line": 3,
+            "col": 1,
+            "end_line": 3,
+            "end_col": 20
+          },
+          "inputs": [
+            {
+              "node": "typed",
+              "alias": "typed",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "typed.*, day",
+              "span": {
+                "start": 94,
+                "end": 102,
+                "line": 3,
+                "col": 1,
+                "end_line": 3,
+                "end_col": 9
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "*",
+              "expression": "typed.*",
+              "change": "star_unknown",
+              "sources": [
+                {
+                  "node": "typed",
+                  "column": "*"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 101,
+                "end": 102,
+                "line": 3,
+                "col": 8,
+                "end_line": 3,
+                "end_col": 9
+              }
+            },
+            {
+              "name": "day",
+              "expression": "day",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "typed",
+                  "column": "day"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 101,
+                "end": 102,
+                "line": 3,
+                "col": 8,
+                "end_line": 3,
+                "end_col": 9
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": 0,
+            "rows": "same"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "from": "raw.events",
+          "to": "src",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "src",
+          "to": "typed",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "typed",
+          "to": "<output>",
+          "role": "from",
+          "join_type": null
+        }
+      ],
+      "output_node": "<output>",
+      "order": [
+        "raw.events",
+        "src",
+        "typed",
+        "<output>"
+      ]
+    }
+  ]
+}
