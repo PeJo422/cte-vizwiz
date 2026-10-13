@@ -123,7 +123,7 @@ def expand_star(entry: Entry, ctx, node_id, span):
             ctx.source(entry.node).add_column(STAR)
             ctx.warn(warning(
                 "star_unknown",
-                f"SELECT * mot '{entry.alias or entry.node}' – kolumnerna är okända utan schema",
+                f"SELECT * mot '{entry.alias or entry.node}': kolumnerna är okända utan schema",
                 level="info", node=node_id, span=span,
             ))
         sources = [{"node": entry.node, "column": STAR}] if entry.node else []

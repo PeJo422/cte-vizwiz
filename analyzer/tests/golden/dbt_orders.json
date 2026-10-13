@@ -1,0 +1,985 @@
+{
+  "schema_version": 1,
+  "dialect": "tsql",
+  "status": "ok",
+  "warnings": [
+    {
+      "code": "incremental_assumed",
+      "message": "is_incremental() räknades som falskt (full körning). Ändra under dbt-inställningar.",
+      "level": "info",
+      "node": null,
+      "span": {
+        "start": 915,
+        "end": 946,
+        "line": 30,
+        "col": 9,
+        "end_line": 30,
+        "end_col": 40
+      },
+      "statement": null
+    }
+  ],
+  "errors": [],
+  "statements": [
+    {
+      "index": 0,
+      "span": {
+        "start": 200,
+        "end": 1044,
+        "line": 7,
+        "col": 1,
+        "end_line": 34,
+        "end_col": 21
+      },
+      "nodes": [
+        {
+          "id": "shop.raw_orders",
+          "kind": "source",
+          "span": null,
+          "name_span": null,
+          "body_span": null,
+          "inputs": [],
+          "operations": [],
+          "columns": [
+            {
+              "name": "order_id",
+              "expression": "order_id",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            },
+            {
+              "name": "customer_id",
+              "expression": "customer_id",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            },
+            {
+              "name": "amount",
+              "expression": "amount",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            },
+            {
+              "name": "status",
+              "expression": "status",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            },
+            {
+              "name": "order_date",
+              "expression": "order_date",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "unknown"
+          },
+          "dbt": {
+            "kind": "source",
+            "source": "shop",
+            "table": "raw_orders",
+            "relation": "shop.raw_orders"
+          }
+        },
+        {
+          "id": "stg_customers",
+          "kind": "source",
+          "span": null,
+          "name_span": null,
+          "body_span": null,
+          "inputs": [],
+          "operations": [],
+          "columns": [
+            {
+              "name": "customer_id",
+              "expression": "customer_id",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            },
+            {
+              "name": "customer_name",
+              "expression": "customer_name",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "unknown"
+          },
+          "dbt": {
+            "kind": "ref",
+            "name": "stg_customers",
+            "package": null,
+            "version": null,
+            "relation": "stg_customers"
+          }
+        },
+        {
+          "id": "source_orders",
+          "kind": "cte",
+          "span": {
+            "start": 205,
+            "end": 440,
+            "line": 7,
+            "col": 6,
+            "end_line": 13,
+            "end_col": 2
+          },
+          "name_span": {
+            "start": 205,
+            "end": 218,
+            "line": 7,
+            "col": 6,
+            "end_line": 7,
+            "end_col": 19
+          },
+          "body_span": {
+            "start": 228,
+            "end": 328,
+            "line": 8,
+            "col": 5,
+            "end_line": 9,
+            "end_col": 44
+          },
+          "inputs": [
+            {
+              "node": "shop.raw_orders",
+              "alias": "raw_orders",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "order_id, customer_id, amount, status, order_date",
+              "span": {
+                "start": 228,
+                "end": 284,
+                "line": 8,
+                "col": 5,
+                "end_line": 8,
+                "end_col": 61
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "order_id",
+              "expression": "order_id",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "shop.raw_orders",
+                  "column": "order_id"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 235,
+                "end": 243,
+                "line": 8,
+                "col": 12,
+                "end_line": 8,
+                "end_col": 20
+              }
+            },
+            {
+              "name": "customer_id",
+              "expression": "customer_id",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "shop.raw_orders",
+                  "column": "customer_id"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 245,
+                "end": 256,
+                "line": 8,
+                "col": 22,
+                "end_line": 8,
+                "end_col": 33
+              }
+            },
+            {
+              "name": "amount",
+              "expression": "amount",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "shop.raw_orders",
+                  "column": "amount"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 258,
+                "end": 264,
+                "line": 8,
+                "col": 35,
+                "end_line": 8,
+                "end_col": 41
+              }
+            },
+            {
+              "name": "status",
+              "expression": "status",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "shop.raw_orders",
+                  "column": "status"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 266,
+                "end": 272,
+                "line": 8,
+                "col": 43,
+                "end_line": 8,
+                "end_col": 49
+              }
+            },
+            {
+              "name": "order_date",
+              "expression": "order_date",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "shop.raw_orders",
+                  "column": "order_date"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 274,
+                "end": 284,
+                "line": 8,
+                "col": 51,
+                "end_line": 8,
+                "end_col": 61
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "same"
+          },
+          "dbt": null
+        },
+        {
+          "id": "customers",
+          "kind": "cte",
+          "span": {
+            "start": 442,
+            "end": 528,
+            "line": 14,
+            "col": 1,
+            "end_line": 16,
+            "end_col": 2
+          },
+          "name_span": {
+            "start": 442,
+            "end": 451,
+            "line": 14,
+            "col": 1,
+            "end_line": 14,
+            "end_col": 10
+          },
+          "body_span": {
+            "start": 461,
+            "end": 526,
+            "line": 15,
+            "col": 5,
+            "end_line": 15,
+            "end_col": 70
+          },
+          "inputs": [
+            {
+              "node": "stg_customers",
+              "alias": "stg_customers",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "customer_id, customer_name",
+              "span": {
+                "start": 461,
+                "end": 494,
+                "line": 15,
+                "col": 5,
+                "end_line": 15,
+                "end_col": 38
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "customer_id",
+              "expression": "customer_id",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "stg_customers",
+                  "column": "customer_id"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 468,
+                "end": 479,
+                "line": 15,
+                "col": 12,
+                "end_line": 15,
+                "end_col": 23
+              }
+            },
+            {
+              "name": "customer_name",
+              "expression": "customer_name",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "stg_customers",
+                  "column": "customer_name"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 481,
+                "end": 494,
+                "line": 15,
+                "col": 25,
+                "end_line": 15,
+                "end_col": 38
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "same"
+          },
+          "dbt": null
+        },
+        {
+          "id": "filtered",
+          "kind": "cte",
+          "span": {
+            "start": 530,
+            "end": 838,
+            "line": 17,
+            "col": 1,
+            "end_line": 25,
+            "end_col": 2
+          },
+          "name_span": {
+            "start": 530,
+            "end": 538,
+            "line": 17,
+            "col": 1,
+            "end_line": 17,
+            "end_col": 9
+          },
+          "body_span": {
+            "start": 548,
+            "end": 836,
+            "line": 18,
+            "col": 5,
+            "end_line": 24,
+            "end_col": 66
+          },
+          "inputs": [
+            {
+              "node": "source_orders",
+              "alias": "o",
+              "role": "from"
+            },
+            {
+              "node": "customers",
+              "alias": "c",
+              "role": "join",
+              "join_type": "LEFT",
+              "on": "c.customer_id = o.customer_id"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "order_id, customer_id, amount, status, order_date, c.customer_name",
+              "span": {
+                "start": 548,
+                "end": 575,
+                "line": 18,
+                "col": 5,
+                "end_line": 18,
+                "end_col": 32
+              },
+              "details": {}
+            },
+            {
+              "type": "join",
+              "expression": "LEFT JOIN customers AS c ON c.customer_id = o.customer_id",
+              "span": {
+                "start": 605,
+                "end": 659,
+                "line": 20,
+                "col": 5,
+                "end_line": 20,
+                "end_col": 59
+              },
+              "details": {
+                "join_type": "LEFT",
+                "source": "customers",
+                "on": "c.customer_id = o.customer_id",
+                "using": null
+              }
+            },
+            {
+              "type": "filter",
+              "expression": "o.status IN ('completed', 'shipped') AND o.order_date >= '2024-01-01'",
+              "span": {
+                "start": 664,
+                "end": 836,
+                "line": 21,
+                "col": 5,
+                "end_line": 24,
+                "end_col": 66
+              },
+              "details": {
+                "clause": "WHERE"
+              }
+            }
+          ],
+          "columns": [
+            {
+              "name": "order_id",
+              "expression": "order_id",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "source_orders",
+                  "column": "order_id"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 555,
+                "end": 558,
+                "line": 18,
+                "col": 12,
+                "end_line": 18,
+                "end_col": 15
+              }
+            },
+            {
+              "name": "customer_id",
+              "expression": "customer_id",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "source_orders",
+                  "column": "customer_id"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 555,
+                "end": 558,
+                "line": 18,
+                "col": 12,
+                "end_line": 18,
+                "end_col": 15
+              }
+            },
+            {
+              "name": "amount",
+              "expression": "amount",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "source_orders",
+                  "column": "amount"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 555,
+                "end": 558,
+                "line": 18,
+                "col": 12,
+                "end_line": 18,
+                "end_col": 15
+              }
+            },
+            {
+              "name": "status",
+              "expression": "status",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "source_orders",
+                  "column": "status"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 555,
+                "end": 558,
+                "line": 18,
+                "col": 12,
+                "end_line": 18,
+                "end_col": 15
+              }
+            },
+            {
+              "name": "order_date",
+              "expression": "order_date",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "source_orders",
+                  "column": "order_date"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 555,
+                "end": 558,
+                "line": 18,
+                "col": 12,
+                "end_line": 18,
+                "end_col": 15
+              }
+            },
+            {
+              "name": "customer_name",
+              "expression": "c.customer_name",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "customers",
+                  "column": "customer_name"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 560,
+                "end": 575,
+                "line": 18,
+                "col": 17,
+                "end_line": 18,
+                "end_col": 32
+              }
+            }
+          ],
+          "columns_added": [
+            "customer_name"
+          ],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": 1,
+            "rows": "unknown"
+          },
+          "dbt": null
+        },
+        {
+          "id": "totals",
+          "kind": "cte",
+          "span": {
+            "start": 840,
+            "end": 1023,
+            "line": 26,
+            "col": 1,
+            "end_line": 33,
+            "end_col": 2
+          },
+          "name_span": {
+            "start": 840,
+            "end": 846,
+            "line": 26,
+            "col": 1,
+            "end_line": 26,
+            "end_col": 7
+          },
+          "body_span": {
+            "start": 856,
+            "end": 1021,
+            "line": 27,
+            "col": 5,
+            "end_line": 32,
+            "end_col": 40
+          },
+          "inputs": [
+            {
+              "node": "filtered",
+              "alias": "filtered",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "customer_id, customer_name, ROUND(SUM(amount) / 100.0, 2)",
+              "span": {
+                "start": 856,
+                "end": 963,
+                "line": 27,
+                "col": 5,
+                "end_line": 30,
+                "end_col": 57
+              },
+              "details": {}
+            },
+            {
+              "type": "aggregate",
+              "expression": "GROUP BY customer_id, customer_name",
+              "span": {
+                "start": 986,
+                "end": 1021,
+                "line": 32,
+                "col": 5,
+                "end_line": 32,
+                "end_col": 40
+              },
+              "details": {
+                "group_by": [
+                  "customer_id",
+                  "customer_name"
+                ]
+              }
+            }
+          ],
+          "columns": [
+            {
+              "name": "customer_id",
+              "expression": "customer_id",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "filtered",
+                  "column": "customer_id"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 871,
+                "end": 882,
+                "line": 28,
+                "col": 9,
+                "end_line": 28,
+                "end_col": 20
+              }
+            },
+            {
+              "name": "customer_name",
+              "expression": "customer_name",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "filtered",
+                  "column": "customer_name"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 892,
+                "end": 905,
+                "line": 29,
+                "col": 9,
+                "end_line": 29,
+                "end_col": 22
+              }
+            },
+            {
+              "name": "total_dollars",
+              "expression": "ROUND(SUM(amount) / 100.0, 2)",
+              "change": "aggregate",
+              "sources": [
+                {
+                  "node": "filtered",
+                  "column": "amount"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 915,
+                "end": 963,
+                "line": 30,
+                "col": 9,
+                "end_line": 30,
+                "end_col": 57
+              }
+            }
+          ],
+          "columns_added": [
+            "total_dollars"
+          ],
+          "columns_removed": [
+            "order_id",
+            "amount",
+            "status",
+            "order_date"
+          ],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": -3,
+            "rows": "collapsed"
+          },
+          "dbt": null
+        },
+        {
+          "id": "<output>",
+          "kind": "output",
+          "span": {
+            "start": 1024,
+            "end": 1044,
+            "line": 34,
+            "col": 1,
+            "end_line": 34,
+            "end_col": 21
+          },
+          "name_span": null,
+          "body_span": {
+            "start": 1024,
+            "end": 1044,
+            "line": 34,
+            "col": 1,
+            "end_line": 34,
+            "end_col": 21
+          },
+          "inputs": [
+            {
+              "node": "totals",
+              "alias": "totals",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "customer_id, customer_name, total_dollars",
+              "span": {
+                "start": 1024,
+                "end": 1032,
+                "line": 34,
+                "col": 1,
+                "end_line": 34,
+                "end_col": 9
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "customer_id",
+              "expression": "customer_id",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "totals",
+                  "column": "customer_id"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 1031,
+                "end": 1032,
+                "line": 34,
+                "col": 8,
+                "end_line": 34,
+                "end_col": 9
+              }
+            },
+            {
+              "name": "customer_name",
+              "expression": "customer_name",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "totals",
+                  "column": "customer_name"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 1031,
+                "end": 1032,
+                "line": 34,
+                "col": 8,
+                "end_line": 34,
+                "end_col": 9
+              }
+            },
+            {
+              "name": "total_dollars",
+              "expression": "total_dollars",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "totals",
+                  "column": "total_dollars"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 1031,
+                "end": 1032,
+                "line": 34,
+                "col": 8,
+                "end_line": 34,
+                "end_col": 9
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": 0,
+            "rows": "same"
+          },
+          "dbt": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "shop.raw_orders",
+          "to": "source_orders",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "stg_customers",
+          "to": "customers",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "source_orders",
+          "to": "filtered",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "customers",
+          "to": "filtered",
+          "role": "join",
+          "join_type": "LEFT"
+        },
+        {
+          "from": "filtered",
+          "to": "totals",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "totals",
+          "to": "<output>",
+          "role": "from",
+          "join_type": null
+        }
+      ],
+      "output_node": "<output>",
+      "order": [
+        "shop.raw_orders",
+        "stg_customers",
+        "source_orders",
+        "customers",
+        "filtered",
+        "totals",
+        "<output>"
+      ]
+    }
+  ],
+  "dbt": {
+    "config": {
+      "materialized": "incremental",
+      "unique_key": "order_id",
+      "tags": [
+        "finance"
+      ]
+    },
+    "refs": [
+      {
+        "kind": "ref",
+        "name": "stg_customers",
+        "package": null,
+        "version": null,
+        "relation": "stg_customers",
+        "span": {
+          "start": 294,
+          "end": 328,
+          "line": 9,
+          "col": 10,
+          "end_line": 9,
+          "end_col": 44
+        }
+      }
+    ],
+    "sources": [
+      {
+        "kind": "source",
+        "source": "shop",
+        "table": "raw_orders",
+        "relation": "shop.raw_orders",
+        "span": {
+          "start": 0,
+          "end": 81,
+          "line": 1,
+          "col": 1,
+          "end_line": 1,
+          "end_col": 82
+        }
+      }
+    ],
+    "vars": [
+      {
+        "name": "start_date",
+        "kind": "var",
+        "value": "2024-01-01",
+        "resolved": true,
+        "from": "default"
+      }
+    ],
+    "unresolved": [],
+    "is_incremental": false,
+    "rendered_sql": "\n\n\n\n\n\nWITH source_orders AS (\n    SELECT order_id, customer_id, amount, status, order_date\n    FROM shop.raw_orders\n    \n),\ncustomers AS (\n    SELECT customer_id, customer_name FROM stg_customers\n),\nfiltered AS (\n    SELECT o.*, c.customer_name\n    FROM source_orders o\n    LEFT JOIN customers c ON c.customer_id = o.customer_id\n    WHERE o.status IN ('completed','shipped')\n      AND o.order_date >= '2024-01-01'\n),\ntotals AS (\n    SELECT\n        customer_id,\n        customer_name,\n        ROUND(SUM(amount) / 100.0, 2) AS total_dollars\n    FROM filtered\n    GROUP BY customer_id, customer_name\n)\nSELECT * FROM totals\n"
+  }
+}

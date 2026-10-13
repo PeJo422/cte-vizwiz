@@ -1,0 +1,413 @@
+{
+  "schema_version": 1,
+  "dialect": "tsql",
+  "status": "partial",
+  "warnings": [
+    {
+      "code": "unresolved_macro",
+      "message": "{{ dbt_utils.star('stg_orders') }} kan inte lösas utan projektets makron. Ersatt av platshållare.",
+      "level": "warning",
+      "node": null,
+      "span": {
+        "start": 70,
+        "end": 109,
+        "line": 5,
+        "col": 9,
+        "end_line": 5,
+        "end_col": 48
+      },
+      "statement": null
+    },
+    {
+      "code": "unresolved_macro",
+      "message": "{{ dbt_utils.generate_surrogate_key(['order_id', 'customer_id']) }} kan inte lösas utan projektets makron. Ersatt av platshållare.",
+      "level": "warning",
+      "node": null,
+      "span": {
+        "start": 119,
+        "end": 186,
+        "line": 6,
+        "col": 9,
+        "end_line": 6,
+        "end_col": 76
+      },
+      "statement": null
+    },
+    {
+      "code": "unresolved_var",
+      "message": "Variabeln var('cutoff') saknar värde och standardvärde. Ersatt av platshållare.",
+      "level": "warning",
+      "node": null,
+      "span": {
+        "start": 274,
+        "end": 293,
+        "line": 9,
+        "col": 26,
+        "end_line": 9,
+        "end_col": 45
+      },
+      "statement": null
+    }
+  ],
+  "errors": [],
+  "statements": [
+    {
+      "index": 0,
+      "span": {
+        "start": 36,
+        "end": 331,
+        "line": 3,
+        "col": 1,
+        "end_line": 11,
+        "end_col": 35
+      },
+      "nodes": [
+        {
+          "id": "stg_orders",
+          "kind": "source",
+          "span": null,
+          "name_span": null,
+          "body_span": null,
+          "inputs": [],
+          "operations": [],
+          "columns": [
+            {
+              "name": "amount",
+              "expression": "amount",
+              "change": "source",
+              "sources": [],
+              "via_star": false,
+              "span": null
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "unknown"
+          },
+          "dbt": {
+            "kind": "ref",
+            "name": "stg_orders",
+            "package": null,
+            "version": null,
+            "relation": "stg_orders"
+          }
+        },
+        {
+          "id": "base",
+          "kind": "cte",
+          "span": {
+            "start": 41,
+            "end": 296,
+            "line": 3,
+            "col": 6,
+            "end_line": 10,
+            "end_col": 2
+          },
+          "name_span": {
+            "start": 41,
+            "end": 45,
+            "line": 3,
+            "col": 6,
+            "end_line": 3,
+            "end_col": 10
+          },
+          "body_span": {
+            "start": 55,
+            "end": 294,
+            "line": 4,
+            "col": 5,
+            "end_line": 9,
+            "end_col": 46
+          },
+          "inputs": [
+            {
+              "node": "stg_orders",
+              "alias": "stg_orders",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "{{ dbt_utils.star('stg_orders') }}, {{ dbt_utils.generate_surrogate_key(['order_id', 'customer_id']) }}, amount",
+              "span": {
+                "start": 55,
+                "end": 215,
+                "line": 4,
+                "col": 5,
+                "end_line": 7,
+                "end_col": 15
+              },
+              "details": {}
+            },
+            {
+              "type": "filter",
+              "expression": "order_date >= '{{ var('cutoff') }}'",
+              "span": {
+                "start": 253,
+                "end": 294,
+                "line": 9,
+                "col": 5,
+                "end_line": 9,
+                "end_col": 46
+              },
+              "details": {
+                "clause": "WHERE"
+              }
+            }
+          ],
+          "columns": [
+            {
+              "name": "{{ dbt_utils.star('stg_orders') }}",
+              "expression": "{{ dbt_utils.star('stg_orders') }}",
+              "change": "unresolved",
+              "sources": [],
+              "via_star": false,
+              "span": {
+                "start": 70,
+                "end": 109,
+                "line": 5,
+                "col": 9,
+                "end_line": 5,
+                "end_col": 48
+              }
+            },
+            {
+              "name": "order_key",
+              "expression": "{{ dbt_utils.generate_surrogate_key(['order_id', 'customer_id']) }}",
+              "change": "unresolved",
+              "sources": [],
+              "via_star": false,
+              "span": {
+                "start": 119,
+                "end": 199,
+                "line": 6,
+                "col": 9,
+                "end_line": 6,
+                "end_col": 89
+              }
+            },
+            {
+              "name": "amount",
+              "expression": "amount",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "stg_orders",
+                  "column": "amount"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 209,
+                "end": 215,
+                "line": 7,
+                "col": 9,
+                "end_line": 7,
+                "end_col": 15
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "fewer"
+          },
+          "dbt": null
+        },
+        {
+          "id": "<output>",
+          "kind": "output",
+          "span": {
+            "start": 297,
+            "end": 331,
+            "line": 11,
+            "col": 1,
+            "end_line": 11,
+            "end_col": 35
+          },
+          "name_span": null,
+          "body_span": {
+            "start": 297,
+            "end": 331,
+            "line": 11,
+            "col": 1,
+            "end_line": 11,
+            "end_col": 35
+          },
+          "inputs": [
+            {
+              "node": "base",
+              "alias": "base",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "order_key, amount",
+              "span": {
+                "start": 297,
+                "end": 321,
+                "line": 11,
+                "col": 1,
+                "end_line": 11,
+                "end_col": 25
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "order_key",
+              "expression": "order_key",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "base",
+                  "column": "order_key"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 304,
+                "end": 313,
+                "line": 11,
+                "col": 8,
+                "end_line": 11,
+                "end_col": 17
+              }
+            },
+            {
+              "name": "amount",
+              "expression": "amount",
+              "change": "passthrough",
+              "sources": [
+                {
+                  "node": "base",
+                  "column": "amount"
+                }
+              ],
+              "via_star": false,
+              "span": {
+                "start": 315,
+                "end": 321,
+                "line": 11,
+                "col": 19,
+                "end_line": 11,
+                "end_col": 25
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [
+            "{{ dbt_utils.star('stg_orders') }}"
+          ],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": -1,
+            "rows": "same"
+          },
+          "dbt": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "stg_orders",
+          "to": "base",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "base",
+          "to": "<output>",
+          "role": "from",
+          "join_type": null
+        }
+      ],
+      "output_node": "<output>",
+      "order": [
+        "stg_orders",
+        "base",
+        "<output>"
+      ]
+    }
+  ],
+  "dbt": {
+    "config": {
+      "materialized": "table"
+    },
+    "refs": [
+      {
+        "kind": "ref",
+        "name": "stg_orders",
+        "package": null,
+        "version": null,
+        "relation": "stg_orders",
+        "span": {
+          "start": 0,
+          "end": 34,
+          "line": 1,
+          "col": 1,
+          "end_line": 1,
+          "end_col": 35
+        }
+      }
+    ],
+    "sources": [],
+    "vars": [
+      {
+        "name": "cutoff",
+        "kind": "var",
+        "value": null,
+        "resolved": false,
+        "from": null
+      }
+    ],
+    "unresolved": [
+      {
+        "text": "dbt_utils.star('stg_orders')",
+        "kind": "macro",
+        "span": {
+          "start": 70,
+          "end": 109,
+          "line": 5,
+          "col": 9,
+          "end_line": 5,
+          "end_col": 48
+        }
+      },
+      {
+        "text": "dbt_utils.generate_surrogate_key(['order_id', 'customer_id'])",
+        "kind": "macro",
+        "span": {
+          "start": 119,
+          "end": 186,
+          "line": 6,
+          "col": 9,
+          "end_line": 6,
+          "end_col": 76
+        }
+      },
+      {
+        "text": "var('cutoff')",
+        "kind": "var",
+        "span": {
+          "start": 274,
+          "end": 293,
+          "line": 9,
+          "col": 26,
+          "end_line": 9,
+          "end_col": 45
+        }
+      }
+    ],
+    "is_incremental": false,
+    "rendered_sql": "\n\nWITH base AS (\n    SELECT\n        {{ dbt_utils.star('stg_orders') }},\n        {{ dbt_utils.generate_surrogate_key(['order_id', 'customer_id']) }} AS order_key,\n        amount\n    FROM stg_orders\n    WHERE order_date >= '{{ var('cutoff') }}'\n)\nSELECT order_key, amount FROM base\n"
+  }
+}

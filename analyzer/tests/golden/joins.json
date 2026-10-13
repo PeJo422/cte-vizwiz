@@ -56,7 +56,8 @@
           "shape": {
             "width_delta": null,
             "rows": "unknown"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "dbo.orders",
@@ -106,7 +107,8 @@
           "shape": {
             "width_delta": null,
             "rows": "unknown"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "customers",
@@ -225,7 +227,8 @@
           "shape": {
             "width_delta": null,
             "rows": "same"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "orders",
@@ -364,7 +367,8 @@
           "shape": {
             "width_delta": null,
             "rows": "same"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "enriched",
@@ -593,7 +597,8 @@
           "shape": {
             "width_delta": 2,
             "rows": "unknown"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "<output>",
@@ -810,7 +815,8 @@
           "shape": {
             "width_delta": 1,
             "rows": "fewer"
-          }
+          },
+          "dbt": null
         }
       ],
       "edges": [
@@ -855,5 +861,6 @@
         "<output>"
       ]
     }
-  ]
+  ],
+  "dbt": null
 }

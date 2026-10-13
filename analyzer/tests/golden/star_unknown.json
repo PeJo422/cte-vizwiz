@@ -5,7 +5,7 @@
   "warnings": [
     {
       "code": "star_unknown",
-      "message": "SELECT * mot 'events' – kolumnerna är okända utan schema",
+      "message": "SELECT * mot 'events': kolumnerna är okända utan schema",
       "level": "info",
       "node": "src",
       "span": {
@@ -56,7 +56,8 @@
           "shape": {
             "width_delta": null,
             "rows": "unknown"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "src",
@@ -135,7 +136,8 @@
           "shape": {
             "width_delta": null,
             "rows": "same"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "typed",
@@ -236,7 +238,8 @@
           "shape": {
             "width_delta": 1,
             "rows": "same"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "<output>",
@@ -328,7 +331,8 @@
           "shape": {
             "width_delta": 0,
             "rows": "same"
-          }
+          },
+          "dbt": null
         }
       ],
       "edges": [
@@ -359,5 +363,6 @@
         "<output>"
       ]
     }
-  ]
+  ],
+  "dbt": null
 }

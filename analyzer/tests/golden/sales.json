@@ -56,7 +56,8 @@
           "shape": {
             "width_delta": null,
             "rows": "unknown"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "orders",
@@ -175,7 +176,8 @@
           "shape": {
             "width_delta": null,
             "rows": "same"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "filtered_orders",
@@ -309,7 +311,8 @@
           "shape": {
             "width_delta": 0,
             "rows": "fewer"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "customer_totals",
@@ -430,7 +433,8 @@
           "shape": {
             "width_delta": -1,
             "rows": "collapsed"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "<output>",
@@ -522,7 +526,8 @@
           "shape": {
             "width_delta": 0,
             "rows": "same"
-          }
+          },
+          "dbt": null
         }
       ],
       "edges": [
@@ -560,5 +565,6 @@
         "<output>"
       ]
     }
-  ]
+  ],
+  "dbt": null
 }

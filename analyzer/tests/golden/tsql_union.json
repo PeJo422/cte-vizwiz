@@ -48,7 +48,8 @@
           "shape": {
             "width_delta": null,
             "rows": "unknown"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "sales.orders_2024",
@@ -82,7 +83,8 @@
           "shape": {
             "width_delta": null,
             "rows": "unknown"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "Sales 2023",
@@ -207,7 +209,8 @@
           "shape": {
             "width_delta": null,
             "rows": "fewer"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "sales_2024",
@@ -306,7 +309,8 @@
           "shape": {
             "width_delta": null,
             "rows": "same"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "all_sales",
@@ -448,7 +452,8 @@
           "shape": {
             "width_delta": 0,
             "rows": "more"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "<output>",
@@ -576,7 +581,8 @@
           "shape": {
             "width_delta": 0,
             "rows": "collapsed"
-          }
+          },
+          "dbt": null
         }
       ],
       "edges": [
@@ -621,5 +627,6 @@
         "<output>"
       ]
     }
-  ]
+  ],
+  "dbt": null
 }

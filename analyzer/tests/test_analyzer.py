@@ -167,15 +167,15 @@ def test_inline_subquery_is_flattened_and_expression_subquery_is_flagged():
     assert r["status"] == "partial"
 
 
-def test_jinja_is_never_silently_visualized():
-    r = analyze(load("jinja"))
+def test_jinja_with_dbt_mode_off_is_never_silently_visualized():
+    r = analyze(load("jinja"), options={"dbt": False})
     assert r["status"] in ("partial", "error")
-    assert any(w["code"] == "jinja" for w in r["warnings"])
     assert "Jinja" in r["errors"][0]["message"]
+    assert any(w["code"] == "jinja" for w in r["warnings"])
 
 
-def test_jinja_that_still_parses_is_partial():
-    r = analyze("WITH a AS (SELECT x FROM t /* {# kommentar #} */) SELECT * FROM a")
+def test_jinja_comment_with_dbt_mode_off_is_partial():
+    r = analyze("WITH a AS (SELECT x FROM t /* {# kommentar #} */) SELECT * FROM a", options={"dbt": False})
     assert r["status"] == "partial"
     assert any(w["code"] == "jinja" for w in r["warnings"])
 

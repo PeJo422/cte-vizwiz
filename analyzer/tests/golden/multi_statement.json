@@ -40,7 +40,8 @@
           "shape": {
             "width_delta": null,
             "rows": "unknown"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "a",
@@ -119,7 +120,8 @@
           "shape": {
             "width_delta": null,
             "rows": "same"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "<output>",
@@ -191,7 +193,8 @@
           "shape": {
             "width_delta": 0,
             "rows": "same"
-          }
+          },
+          "dbt": null
         }
       ],
       "edges": [
@@ -250,7 +253,8 @@
           "shape": {
             "width_delta": null,
             "rows": "unknown"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "b",
@@ -329,7 +333,8 @@
           "shape": {
             "width_delta": null,
             "rows": "same"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "<output>",
@@ -401,7 +406,8 @@
           "shape": {
             "width_delta": 0,
             "rows": "same"
-          }
+          },
+          "dbt": null
         }
       ],
       "edges": [
@@ -425,5 +431,6 @@
         "<output>"
       ]
     }
-  ]
+  ],
+  "dbt": null
 }

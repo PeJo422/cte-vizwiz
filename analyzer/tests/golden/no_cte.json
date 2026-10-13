@@ -40,7 +40,8 @@
           "shape": {
             "width_delta": null,
             "rows": "unknown"
-          }
+          },
+          "dbt": null
         },
         {
           "id": "<output>",
@@ -144,7 +145,8 @@
           "shape": {
             "width_delta": null,
             "rows": "collapsed"
-          }
+          },
+          "dbt": null
         }
       ],
       "edges": [
@@ -161,5 +163,6 @@
         "<output>"
       ]
     }
-  ]
+  ],
+  "dbt": null
 }

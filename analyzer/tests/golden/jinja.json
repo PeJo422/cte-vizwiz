@@ -1,47 +1,373 @@
 {
   "schema_version": 1,
   "dialect": "tsql",
-  "status": "error",
+  "status": "ok",
   "warnings": [
     {
-      "code": "jinja",
-      "message": "Jinja/dbt-templating hittades. MVP:n tolkar bara ren SQL – resultatet är ofullständigt.",
-      "level": "warning",
-      "node": null,
+      "code": "star_unknown",
+      "message": "SELECT * mot 'stg_orders': kolumnerna är okända utan schema",
+      "level": "info",
+      "node": "source_data",
       "span": {
-        "start": 0,
-        "end": 2,
-        "line": 1,
-        "col": 1,
-        "end_line": 1,
-        "end_col": 3
+        "start": 63,
+        "end": 64,
+        "line": 2,
+        "col": 29,
+        "end_line": 2,
+        "end_col": 30
       },
       "statement": 0
     }
   ],
-  "errors": [
+  "errors": [],
+  "statements": [
     {
-      "message": "Parsningen misslyckades, troligen på grund av Jinja/dbt-templating (ej stött i MVP:n).",
-      "span": {
-        "start": 0,
-        "end": 2,
-        "line": 1,
-        "col": 1,
-        "end_line": 1,
-        "end_col": 3
-      }
-    },
-    {
-      "message": "Invalid expression / Unexpected token",
+      "index": 0,
       "span": {
         "start": 35,
-        "end": 39,
+        "end": 205,
         "line": 2,
         "col": 1,
-        "end_line": 2,
-        "end_col": 5
-      }
+        "end_line": 8,
+        "end_col": 23
+      },
+      "nodes": [
+        {
+          "id": "stg_orders",
+          "kind": "source",
+          "span": null,
+          "name_span": null,
+          "body_span": null,
+          "inputs": [],
+          "operations": [],
+          "columns": [
+            {
+              "name": "*",
+              "expression": "*",
+              "change": "star_unknown",
+              "sources": [],
+              "via_star": true,
+              "span": null
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "unknown"
+          },
+          "dbt": {
+            "kind": "ref",
+            "name": "stg_orders",
+            "package": null,
+            "version": null,
+            "relation": "stg_orders"
+          }
+        },
+        {
+          "id": "source_data",
+          "kind": "cte",
+          "span": {
+            "start": 40,
+            "end": 94,
+            "line": 2,
+            "col": 6,
+            "end_line": 2,
+            "end_col": 60
+          },
+          "name_span": {
+            "start": 40,
+            "end": 51,
+            "line": 2,
+            "col": 6,
+            "end_line": 2,
+            "end_col": 17
+          },
+          "body_span": {
+            "start": 56,
+            "end": 93,
+            "line": 2,
+            "col": 22,
+            "end_line": 2,
+            "end_col": 59
+          },
+          "inputs": [
+            {
+              "node": "stg_orders",
+              "alias": "stg_orders",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "stg_orders.*",
+              "span": {
+                "start": 56,
+                "end": 64,
+                "line": 2,
+                "col": 22,
+                "end_line": 2,
+                "end_col": 30
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "*",
+              "expression": "stg_orders.*",
+              "change": "star_unknown",
+              "sources": [
+                {
+                  "node": "stg_orders",
+                  "column": "*"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 63,
+                "end": 64,
+                "line": 2,
+                "col": 29,
+                "end_line": 2,
+                "end_col": 30
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": null,
+            "rows": "same"
+          },
+          "dbt": null
+        },
+        {
+          "id": "filtered",
+          "kind": "cte",
+          "span": {
+            "start": 96,
+            "end": 182,
+            "line": 3,
+            "col": 1,
+            "end_line": 7,
+            "end_col": 2
+          },
+          "name_span": {
+            "start": 96,
+            "end": 104,
+            "line": 3,
+            "col": 1,
+            "end_line": 3,
+            "end_col": 9
+          },
+          "body_span": {
+            "start": 114,
+            "end": 180,
+            "line": 4,
+            "col": 5,
+            "end_line": 6,
+            "end_col": 37
+          },
+          "inputs": [
+            {
+              "node": "source_data",
+              "alias": "source_data",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "source_data.*",
+              "span": {
+                "start": 114,
+                "end": 122,
+                "line": 4,
+                "col": 5,
+                "end_line": 4,
+                "end_col": 13
+              },
+              "details": {}
+            },
+            {
+              "type": "filter",
+              "expression": "order_status = 'completed'",
+              "span": {
+                "start": 148,
+                "end": 180,
+                "line": 6,
+                "col": 5,
+                "end_line": 6,
+                "end_col": 37
+              },
+              "details": {
+                "clause": "WHERE"
+              }
+            }
+          ],
+          "columns": [
+            {
+              "name": "*",
+              "expression": "source_data.*",
+              "change": "star_unknown",
+              "sources": [
+                {
+                  "node": "source_data",
+                  "column": "*"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 121,
+                "end": 122,
+                "line": 4,
+                "col": 12,
+                "end_line": 4,
+                "end_col": 13
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": 0,
+            "rows": "fewer"
+          },
+          "dbt": null
+        },
+        {
+          "id": "<output>",
+          "kind": "output",
+          "span": {
+            "start": 183,
+            "end": 205,
+            "line": 8,
+            "col": 1,
+            "end_line": 8,
+            "end_col": 23
+          },
+          "name_span": null,
+          "body_span": {
+            "start": 183,
+            "end": 205,
+            "line": 8,
+            "col": 1,
+            "end_line": 8,
+            "end_col": 23
+          },
+          "inputs": [
+            {
+              "node": "filtered",
+              "alias": "filtered",
+              "role": "from"
+            }
+          ],
+          "operations": [
+            {
+              "type": "select",
+              "expression": "filtered.*",
+              "span": {
+                "start": 183,
+                "end": 191,
+                "line": 8,
+                "col": 1,
+                "end_line": 8,
+                "end_col": 9
+              },
+              "details": {}
+            }
+          ],
+          "columns": [
+            {
+              "name": "*",
+              "expression": "filtered.*",
+              "change": "star_unknown",
+              "sources": [
+                {
+                  "node": "filtered",
+                  "column": "*"
+                }
+              ],
+              "via_star": true,
+              "span": {
+                "start": 190,
+                "end": 191,
+                "line": 8,
+                "col": 8,
+                "end_line": 8,
+                "end_col": 9
+              }
+            }
+          ],
+          "columns_added": [],
+          "columns_removed": [],
+          "columns_modified": [],
+          "shape": {
+            "width_delta": 0,
+            "rows": "same"
+          },
+          "dbt": null
+        }
+      ],
+      "edges": [
+        {
+          "from": "stg_orders",
+          "to": "source_data",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "source_data",
+          "to": "filtered",
+          "role": "from",
+          "join_type": null
+        },
+        {
+          "from": "filtered",
+          "to": "<output>",
+          "role": "from",
+          "join_type": null
+        }
+      ],
+      "output_node": "<output>",
+      "order": [
+        "stg_orders",
+        "source_data",
+        "filtered",
+        "<output>"
+      ]
     }
   ],
-  "statements": []
+  "dbt": {
+    "config": {
+      "materialized": "table"
+    },
+    "refs": [
+      {
+        "kind": "ref",
+        "name": "stg_orders",
+        "package": null,
+        "version": null,
+        "relation": "stg_orders",
+        "span": {
+          "start": 0,
+          "end": 34,
+          "line": 1,
+          "col": 1,
+          "end_line": 1,
+          "end_col": 35
+        }
+      }
+    ],
+    "sources": [],
+    "vars": [],
+    "unresolved": [],
+    "is_incremental": false,
+    "rendered_sql": "\nWITH source_data AS (SELECT * FROM stg_orders),\nfiltered AS (\n    SELECT *\n    FROM source_data\n    WHERE order_status = 'completed'\n)\nSELECT * FROM filtered\n"
+  }
 }

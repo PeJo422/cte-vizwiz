@@ -91,7 +91,7 @@ def _entry_for(src, role, env, ctx, node_id):
             c = env[low]
             return Entry(alias, "cte", c["id"], c["columns"]), [{"node": c["id"], "alias": alias}]
         if single and ctx.current and low == ctx.current:
-            ctx.warn(warning("recursive_cte", f"Rekursiv CTE '{name}' stöds inte fullt ut – kolumnerna blir okända", node=node_id))
+            ctx.warn(warning("recursive_cte", f"Rekursiv CTE '{name}' stöds inte fullt ut. Kolumnerna blir okända.", node=node_id))
             return Entry(alias, "opaque"), []
         s = ctx.source(name)
         return Entry(alias, "table", s.node["id"]), [{"node": s.node["id"], "alias": alias}]
@@ -285,7 +285,7 @@ def analyze_statement(stmt, chunk, ctx: Ctx, index: int):
     if located is not None and located[1] < len(chunk):
         out_tokens = chunk[located[1]:]
         out_spans = {"span": sp.tok_span(ctx.sm, chunk, located[1], len(chunk) - 1)}
-        out_spans["body_span"] = out_spans["span"]
+        out_spans["body_span"] = dict(out_spans["span"])  # egen kopia: spans muteras vid dbt-omräkning
     out = _make_node(OUTPUT_ID, "output", query, ctx, env, out_spans, out_tokens)
     nodes.append(out)
 
